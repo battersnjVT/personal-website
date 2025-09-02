@@ -84,7 +84,7 @@ export default function Home() {
         <div className="text-center">
           <h2 className="text-4xl font-bold mb-4 text-white">About Me</h2>
           <p className="text-lg max-w-xl mx-auto text-gray-300">
-            I'm a CS junior passionate about building cool web applications and learning modern tech stacks.
+            I&apos;m a CS junior passionate about building cool web applications and learning modern tech stacks.
           </p>
         </div>
       </section>
