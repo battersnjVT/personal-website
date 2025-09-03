@@ -142,7 +142,7 @@ export default function Home() {
             </li>
             <li className="text-gray-300">Creating a Makemore Artificial Intelligence Model</li>
             <li className="text-gray-300">Spades+ : A revamped spades card game (In progress) </li>
-            <li className="text-gray-300">Codeswords+ : A new online spin of the "Codenames" board game (In progress) </li>
+            <li className="text-gray-300">Codeswords+ : A new online spin of the &quot;Codenames&quot; board game (In progress) </li>
           </ul>
         </div>
       </section>
