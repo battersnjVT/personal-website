@@ -66,7 +66,7 @@ export default function Home() {
                  <div className="text-center relative z-10">
            <h1 className="text-7xl font-bold text-white mb-8 drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)]">Noah Batterson</h1>
            <p className="text-2xl text-white mb-12 max-w-4xl drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)] leading-relaxed">
-             I am currently a Junior majoring in Computer Science at Virginia Tech. I'm passionate about all kinds of things computer science, thanks for visiting my website!
+             I am currently a Junior majoring in Computer Science at Virginia Tech. I&apos;m passionate about all kinds of things computer science, thanks for visiting my website!
            </p>
           
                      {/* Social Media Links */}
@@ -122,10 +122,10 @@ export default function Home() {
         <div className="text-center">
           <h2 className="text-6xl font-bold mb-8 text-white">About Me</h2>
           <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
-            Hello, I'm Noah Batterson! In high school I attended the Center for Information Technology (CIT) at Deep Run High School. This was my first introduction to computer science, and I've been on the path every since.
+            Hello, I&apos;m Noah Batterson! In high school I attended the Center for Information Technology (CIT) at Deep Run High School. This was my first introduction to computer science, and I&apos;ve been on the path every since.
             <br></br>
             <br></br>
-            Currently I&apos;m a Computer Science student interested in all sorts of topics in computer science. I'm mostly interested in higher level Data Structures and Algorithms, Artificial Intelligence, Machine Learning, and Cybersecurity.  
+            Currently I&apos;m a Computer Science student interested in all sorts of topics in computer science. I&apos;m mostly interested in higher level Data Structures and Algorithms, Artificial Intelligence, Machine Learning, and Cybersecurity.  
           </p>
         </div>
       </section>
