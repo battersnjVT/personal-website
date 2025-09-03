@@ -1,6 +1,6 @@
 "use client"; // Required to use browser features like smooth scrolling
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   // Enable smooth scrolling for the entire page
@@ -8,16 +8,54 @@ export default function Home() {
     document.documentElement.style.scrollBehavior = "smooth";
   }, []);
 
+  // State to track scroll position for navbar styling
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const homeSectionHeight = window.innerHeight;
+      setIsScrolled(scrollPosition > homeSectionHeight * 0.25);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <main className="relative">
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full bg-gray-900 shadow-lg z-50 flex justify-center gap-6 py-4">
-        <a href="#home" className="text-gray-300 hover:text-blue-400 font-medium transition-colors duration-200">Home</a>
-        <a href="#about" className="text-gray-300 hover:text-blue-400 font-medium transition-colors duration-200">About</a>
-        <a href="#projects" className="text-gray-300 hover:text-blue-400 font-medium transition-colors duration-200">Projects</a>
-        <a href="#resume" className="text-gray-300 hover:text-blue-400 font-medium transition-colors duration-200">Resume</a>
-        <a href="#contact" className="text-gray-300 hover:text-blue-400 font-medium transition-colors duration-200">Contact</a>
-      </nav>
+             {/* Navbar */}
+               <nav className={`fixed top-0 left-0 w-full z-50 flex justify-center gap-6 py-4 transition-all duration-300 border-b border-white ${
+          isScrolled 
+            ? 'bg-gray-900 shadow-lg' 
+            : 'bg-transparent'
+        }`}>
+         <a href="#home" className={`font-black tracking-wider transition-colors duration-200 ${
+           isScrolled 
+             ? 'text-gray-300 hover:text-blue-400' 
+             : 'text-white hover:text-blue-300'
+         }`}>HOME</a>
+         <a href="#about" className={`font-black tracking-wider transition-colors duration-200 ${
+           isScrolled 
+             ? 'text-gray-300 hover:text-blue-400' 
+             : 'text-white hover:text-blue-300'
+         }`}>ABOUT</a>
+         <a href="#projects" className={`font-black tracking-wider transition-colors duration-200 ${
+           isScrolled 
+             ? 'text-gray-300 hover:text-blue-400' 
+             : 'text-white hover:text-blue-400'
+         }`}>PROJECTS</a>
+         <a href="#resume" className={`font-black tracking-wider transition-colors duration-200 ${
+           isScrolled 
+             ? 'text-gray-300 hover:text-blue-400' 
+             : 'text-white hover:text-blue-300'
+         }`}>RESUME</a>
+         <a href="#contact" className={`font-black tracking-wider transition-colors duration-200 ${
+           isScrolled 
+             ? 'text-gray-300 hover:text-blue-400' 
+             : 'text-white hover:text-blue-300'
+         }`}>CONTACT</a>
+       </nav>
 
       {/* Sections */}
 
@@ -25,14 +63,14 @@ export default function Home() {
       <section id="home" className="h-screen flex items-center justify-center relative">
         
         {/* Home Content */}
-        <div className="text-center relative z-10">
-          <h1 className="text-5xl font-bold text-white mb-6 drop-shadow-lg">Noah Batterson</h1>
-          <p className="text-xl text-white mb-8 max-w-2xl mx-auto drop-shadow-lg">
-            I am currently a Junior studying Computer Science at Virginia Tech. I am passionate about all kinds of things computer science, thanks for visiting my website!
-          </p>
+                 <div className="text-center relative z-10">
+           <h1 className="text-7xl font-bold text-white mb-8 drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)]">Noah Batterson</h1>
+           <p className="text-2xl text-white mb-12 max-w-4xl drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)] leading-relaxed">
+             I am currently a Junior majoring in Computer Science at Virginia Tech. I'm passionate about all kinds of things computer science, thanks for visiting my website!
+           </p>
           
-          {/* Social Media Links */}
-          <div className="flex justify-center gap-6">
+                     {/* Social Media Links */}
+           <div className="flex justify-center gap-8 mt-8">
             {/* LinkedIn */}
             <a 
               href="https://www.linkedin.com/in/noah-batterson" 
@@ -41,7 +79,7 @@ export default function Home() {
               className="text-white hover:text-blue-300 transition-colors duration-200"
               aria-label="LinkedIn Profile"
             >
-              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
             </a>
@@ -54,7 +92,7 @@ export default function Home() {
               className="group text-white hover:text-green-300 transition-colors duration-200"
               aria-label="Handshake Profile"
             >
-              <svg className="w-8 h-8" viewBox="0 0 32 32" aria-hidden="true">
+              <svg className="w-10 h-10" viewBox="0 0 32 32" aria-hidden="true">
                 <defs>
                   <mask id="mask-cutout-h">
                     <rect x="0" y="0" width="32" height="32" fill="white" />
@@ -71,7 +109,7 @@ export default function Home() {
               className="text-white hover:text-red-300 transition-colors duration-200"
               aria-label="Send Email"
             >
-              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
               </svg>
             </a>
@@ -82,9 +120,12 @@ export default function Home() {
       {/* About Section: brief introduction */}
       <section id="about" className="h-screen flex items-center justify-center bg-gray-800">
         <div className="text-center">
-          <h2 className="text-4xl font-bold mb-4 text-white">About Me</h2>
-          <p className="text-lg max-w-xl mx-auto text-gray-300">
-            I&apos;m a CS junior passionate about building cool web applications and learning modern tech stacks.
+          <h2 className="text-6xl font-bold mb-8 text-white">About Me</h2>
+          <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
+            Hello, I'm Noah Batterson! In high school I attended the Center for Information Technology (CIT) at Deep Run High School. This was my first introduction to computer science, and I've been on the path every since.
+            <br></br>
+            <br></br>
+            Currently I&apos;m a Computer Science student interested in all sorts of topics in computer science. I'm mostly interested in higher level Data Structures and Algorithms, Artificial Intelligence, Machine Learning, and Cybersecurity.  
           </p>
         </div>
       </section>
@@ -92,11 +133,16 @@ export default function Home() {
       {/* Projects Section: list of highlighted projects */}
       <section id="projects" className="h-screen flex items-center justify-center bg-gray-900">
         <div className="text-center">
-          <h2 className="text-4xl font-bold mb-4 text-white">Projects</h2>
-          <ul className="space-y-3 text-lg">
-            <li className="text-gray-300">Personal Website</li>
-            <li className="text-gray-300"></li>
-            <li className="text-gray-300"></li>
+          <h2 className="text-6xl font-bold mb-8 text-white">Projects</h2>
+          <ul className="space-y-6 text-xl">
+            <li className="text-gray-300">
+              <a href="https://noahbatterson.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200">
+                Personal Website (This one!)
+              </a>
+            </li>
+            <li className="text-gray-300">Creating a Makemore Artificial Intelligence Model</li>
+            <li className="text-gray-300">Spades+ : A revamped spades card game (In progress) </li>
+            <li className="text-gray-300">Codeswords+ : A new online spin of the "Codenames" board game (In progress) </li>
           </ul>
         </div>
       </section>
@@ -104,14 +150,14 @@ export default function Home() {
       {/* Resume Section: download my latest resume */}
       <section id="resume" className="h-screen flex items-center justify-center bg-gray-800">
         <div className="text-center">
-          <h2 className="text-4xl font-bold mb-6 text-white">Resume</h2>
-          <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto">
+          <h2 className="text-6xl font-bold mb-8 text-white">Resume</h2>
+          <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
             Download my resume to learn more about my experience and skills.
           </p>
           <a
             href="/9_2_25%20Resume%20Noah%20Batterson.pdf"
             download
-            className="inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-colors duration-200"
+            className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg rounded-lg shadow-md transition-colors duration-200"
           >
             Download Resume (PDF)
           </a>
@@ -122,16 +168,21 @@ export default function Home() {
       {/* Contact Section: contact methods and links */}
       <section id="contact" className="h-screen flex items-center justify-center bg-gray-950">
         <div className="text-center">
-          <h2 className="text-4xl font-bold mb-4 text-white">Contact</h2>
-          <p className="text-lg text-gray-300">
-            Email: <a href="mailto:noah.batterson42@gmail.com" className="text-blue-400 hover:text-blue-300 underline">noah.batterson42@gmail.com</a>
-          </p>
-          <p className="text-lg text-gray-300">
-            Handshake: <a href="https://vt.joinhandshake.com/profiles/musdtp" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">vt.joinhandshake.com/profiles/musdtp</a>
-          </p>
-          <p className="text-lg text-gray-300">
-            LinkedIn: <a href="https://www.linkedin.com/in/noah-batterson" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">linkedin.com/in/noah-batterson</a>
-          </p>
+          <h2 className="text-6xl font-bold mb-8 text-white">Contact</h2>
+          <div className="space-y-6">
+            <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
+             <strong>If you would like know more or get in touch with me, feel free to reach out!</strong>
+            </p>
+            <p className="text-xl text-gray-300">
+              Email: <a href="mailto:noah.batterson42@gmail.com" className="text-blue-400 hover:text-blue-300 underline">noah.batterson42@gmail.com</a>
+            </p>
+            <p className="text-xl text-gray-300">
+              Handshake: <a href="https://vt.joinhandshake.com/profiles/musdtp" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">vt.joinhandshake.com/profiles/musdtp</a>
+            </p>
+            <p className="text-xl text-gray-300">
+              LinkedIn: <a href="https://www.linkedin.com/in/noah-batterson" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">linkedin.com/in/noah-batterson</a>
+            </p>
+          </div>
         </div>
       </section>
 
