@@ -66,7 +66,9 @@ export default function Home() {
                  <div className="text-center relative z-10">
            <h1 className="text-7xl font-bold text-white mb-8 drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)]">Noah Batterson</h1>
            <p className="text-2xl text-white mb-12 max-w-4xl drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)] leading-relaxed">
-             I am currently a Junior majoring in Computer Science at Virginia Tech. I&apos;m passionate about all kinds of things computer science, thanks for visiting my website!
+             I am currently a Junior majoring in Computer Science at Virginia Tech.
+             <br></br>
+             I&apos;m passionate about all kinds of things computer science, thanks for visiting my website!
            </p>
           
                      {/* Social Media Links */}
@@ -121,12 +123,16 @@ export default function Home() {
       <section id="about" className="h-screen flex items-center justify-center bg-gray-800">
         <div className="text-center">
           <h2 className="text-6xl font-bold mb-8 text-white">About Me</h2>
-          <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
-            Hello, I&apos;m Noah Batterson! In high school I attended the Center for Information Technology (CIT) at Deep Run High School. This was my first introduction to computer science, and I&apos;ve been on the path every since.
-            <br></br>
-            <br></br>
-            Currently I&apos;m a Computer Science student interested in all sorts of topics in computer science. I&apos;m mostly interested in higher level Data Structures and Algorithms, Artificial Intelligence, Machine Learning, and Cybersecurity.  
-          </p>
+          <div className="bg-gray-700/50 backdrop-blur-sm rounded-2xl p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
+            <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
+              Hello, I&apos;m Noah Batterson! In high school I attended the Center for Information Technology (CIT) at Deep Run High School. This was my first introduction to computer science, and I&apos;ve been on the path every since.
+              <br></br>
+              <br></br>
+              Currently I&apos;m a Computer Science student interested in all sorts of topics in computer science.
+              
+              I&apos;m mostly interested in higher level Data Structures and Algorithms, Artificial Intelligence, Machine Learning, and Cybersecurity.  
+            </p>
+          </div>
         </div>
       </section>
 
@@ -134,16 +140,70 @@ export default function Home() {
       <section id="projects" className="h-screen flex items-center justify-center bg-gray-900">
         <div className="text-center">
           <h2 className="text-6xl font-bold mb-8 text-white">Projects</h2>
-          <ul className="space-y-6 text-xl">
-            <li className="text-gray-300">
-              <a href="https://noahbatterson.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200">
-                Personal Website (This one!)
-              </a>
-            </li>
-            <li className="text-gray-300">Creating a Makemore Artificial Intelligence Model</li>
-            <li className="text-gray-300">Spades+ : A revamped spades card game (In progress) </li>
-            <li className="text-gray-300">Codeswords+ : A new online spin of the &quot;Codenames&quot; board game (In progress) </li>
-          </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto px-4">
+            {/* Personal Website Project */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
+              <div className="h-48 bg-gray-700/30 flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/Personal Website Thumbnail.png" 
+                  alt="Personal Website Thumbnail" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-white mb-3">
+                  <a href="https://noahbatterson.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200">
+                    Personal Website (This one!)
+                  </a>
+                </h3>
+                <p className="text-gray-300 text-sm">A modern and responsive personal portfolio website built with Next.js and Tailwind CSS, deployed with Vercel.</p>
+              </div>
+            </div>
+
+            {/* Makemore AI Project */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
+              <div className="h-48 bg-gray-700/30 flex items-center justify-center">
+                <div className="text-gray-400 text-sm">{/*Project image should be here when completed*/}</div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-white mb-3">Makemore Artificial Intelligence Model</h3>
+                <p className="text-gray-300 text-sm">Building an AI model inspired by Andrej Karpathy's Makemore series for character-level language modeling.</p>
+                <span className="inline-block mt-2 px-2 py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
+              </div>
+            </div>
+
+            {/* Spades+ Project */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
+              <div className="h-48 bg-gray-700/30 flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/Spades+ Thumbnail.jpg" 
+                  alt="Spades+ Game Thumbnail" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-white mb-3">Spades+</h3>
+                <p className="text-gray-300 text-sm">A twist on the classic Spades card game with enhanced features, additional gamemodes, and multiplayer support.</p>
+                <span className="inline-block mt-2 px-2 py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
+              </div>
+            </div>
+
+            {/* Codeswords+ Project */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
+              <div className="h-48 bg-gray-700/30 flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/Codewords+ Thumnail.png" 
+                  alt="Codewords+ Game Thumbnail" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-semibold text-white mb-3">Codeswords+</h3>
+                <p className="text-gray-300 text-sm">An online real-time multiplayer adaptation of the popular Codenames board game with numerous new features and gamemodes.</p>
+                <span className="inline-block mt-2 px-2 py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -151,17 +211,18 @@ export default function Home() {
       <section id="resume" className="h-screen flex items-center justify-center bg-gray-800">
         <div className="text-center">
           <h2 className="text-6xl font-bold mb-8 text-white">Resume</h2>
-          <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Download my resume to learn more about my experience and skills.
-          </p>
-          <a
-            href="/9_2_25%20Resume%20Noah%20Batterson.pdf"
-            download
-            className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg rounded-lg shadow-md transition-colors duration-200"
-          >
-            Download Resume (PDF)
-          </a>
-          
+          <div className="bg-gray-700/50 backdrop-blur-sm rounded-2xl p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
+            <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Download my resume to learn more about my experience and skills.
+            </p>
+            <a
+              href="/Resume%20Noah%20Batterson.pdf"
+              download
+              className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg rounded-lg shadow-md transition-colors duration-200"
+            >
+              Download Resume (PDF)
+            </a>
+          </div>
         </div>
       </section>
 
@@ -169,19 +230,21 @@ export default function Home() {
       <section id="contact" className="h-screen flex items-center justify-center bg-gray-950">
         <div className="text-center">
           <h2 className="text-6xl font-bold mb-8 text-white">Contact</h2>
-          <div className="space-y-6">
-            <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
-             <strong>If you would like know more or get in touch with me, feel free to reach out!</strong>
-            </p>
-            <p className="text-xl text-gray-300">
-              Email: <a href="mailto:noah.batterson42@gmail.com" className="text-blue-400 hover:text-blue-300 underline">noah.batterson42@gmail.com</a>
-            </p>
-            <p className="text-xl text-gray-300">
-              Handshake: <a href="https://vt.joinhandshake.com/profiles/musdtp" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">vt.joinhandshake.com/profiles/musdtp</a>
-            </p>
-            <p className="text-xl text-gray-300">
-              LinkedIn: <a href="https://www.linkedin.com/in/noah-batterson" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">linkedin.com/in/noah-batterson</a>
-            </p>
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
+            <div className="space-y-6">
+              <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
+               <strong>If you would like know more or get in touch with me, feel free to reach out!</strong>
+              </p>
+              <p className="text-xl text-gray-300">
+                Email: <a href="mailto:noah.batterson42@gmail.com" className="text-blue-400 hover:text-blue-300 underline">noah.batterson42@gmail.com</a>
+              </p>
+              <p className="text-xl text-gray-300">
+                Handshake: <a href="https://vt.joinhandshake.com/profiles/musdtp" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">vt.joinhandshake.com/profiles/musdtp</a>
+              </p>
+              <p className="text-xl text-gray-300">
+                LinkedIn: <a href="https://www.linkedin.com/in/noah-batterson" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">linkedin.com/in/noah-batterson</a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
