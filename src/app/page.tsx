@@ -1,6 +1,7 @@
 "use client"; // Required to use browser features like smooth scrolling
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   // Enable smooth scrolling for the entire page
@@ -144,9 +145,11 @@ export default function Home() {
             {/* Personal Website Project */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
               <div className="h-48 bg-gray-700/30 flex items-center justify-center overflow-hidden">
-                <img 
+                <Image 
                   src="/Personal Website Thumbnail.png" 
                   alt="Personal Website Thumbnail" 
+                  width={400}
+                  height={192}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -167,7 +170,7 @@ export default function Home() {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold text-white mb-3">Makemore Artificial Intelligence Model</h3>
-                <p className="text-gray-300 text-sm">Building an AI model inspired by Andrej Karpathy's Makemore series for character-level language modeling.</p>
+                <p className="text-gray-300 text-sm">Building an AI model inspired by Andrej Karpathy&apos;s Makemore series for character-level language modeling.</p>
                 <span className="inline-block mt-2 px-2 py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
               </div>
             </div>
@@ -175,9 +178,11 @@ export default function Home() {
             {/* Spades+ Project */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
               <div className="h-48 bg-gray-700/30 flex items-center justify-center overflow-hidden">
-                <img 
+                <Image 
                   src="/Spades+ Thumbnail.jpg" 
                   alt="Spades+ Game Thumbnail" 
+                  width={400}
+                  height={192}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -191,9 +196,11 @@ export default function Home() {
             {/* Codeswords+ Project */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
               <div className="h-48 bg-gray-700/30 flex items-center justify-center overflow-hidden">
-                <img 
+                <Image 
                   src="/Codewords+ Thumnail.png" 
                   alt="Codewords+ Game Thumbnail" 
+                  width={400}
+                  height={192}
                   className="w-full h-full object-cover"
                 />
               </div>
