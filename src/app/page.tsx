@@ -26,32 +26,32 @@ export default function Home() {
   return (
     <main className="relative">
              {/* Navbar */}
-               <nav className={`fixed top-0 left-0 w-full z-50 flex justify-center gap-6 py-4 transition-all duration-300 border-b border-white ${
+               <nav className={`fixed top-0 left-0 w-full z-50 flex justify-center gap-3 md:gap-6 py-3 md:py-4 px-4 transition-all duration-300 border-b border-white ${
           isScrolled 
             ? 'bg-gray-900 shadow-lg' 
             : 'bg-transparent'
         }`}>
-         <a href="#home" className={`font-black tracking-wider transition-colors duration-200 ${
+         <a href="#home" className={`font-black tracking-wider transition-colors duration-200 text-sm md:text-base px-2 ${
            isScrolled 
              ? 'text-gray-300 hover:text-blue-400' 
              : 'text-white hover:text-blue-300'
          }`}>HOME</a>
-         <a href="#about" className={`font-black tracking-wider transition-colors duration-200 ${
+         <a href="#about" className={`font-black tracking-wider transition-colors duration-200 text-sm md:text-base px-2 ${
            isScrolled 
              ? 'text-gray-300 hover:text-blue-400' 
              : 'text-white hover:text-blue-300'
          }`}>ABOUT</a>
-         <a href="#projects" className={`font-black tracking-wider transition-colors duration-200 ${
+         <a href="#projects" className={`font-black tracking-wider transition-colors duration-200 text-sm md:text-base px-2 ${
            isScrolled 
              ? 'text-gray-300 hover:text-blue-400' 
              : 'text-white hover:text-blue-400'
          }`}>PROJECTS</a>
-         <a href="#resume" className={`font-black tracking-wider transition-colors duration-200 ${
+         <a href="#resume" className={`font-black tracking-wider transition-colors duration-200 text-sm md:text-base px-2 ${
            isScrolled 
              ? 'text-gray-300 hover:text-blue-400' 
              : 'text-white hover:text-blue-300'
          }`}>RESUME</a>
-         <a href="#contact" className={`font-black tracking-wider transition-colors duration-200 ${
+         <a href="#contact" className={`font-black tracking-wider transition-colors duration-200 text-sm md:text-base px-2 ${
            isScrolled 
              ? 'text-gray-300 hover:text-blue-400' 
              : 'text-white hover:text-blue-300'
@@ -61,12 +61,12 @@ export default function Home() {
       {/* Sections */}
 
       {/* Home Section: hero with mountain background and social links */}
-      <section id="home" className="h-screen flex items-center justify-center relative">
+      <section id="home" className="min-h-screen flex items-center justify-center relative px-4 py-16 md:py-24">
         
         {/* Home Content */}
                  <div className="text-center relative z-10">
-           <h1 className="text-7xl font-bold text-white mb-8 drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)]">Noah Batterson</h1>
-           <p className="text-2xl text-white mb-12 max-w-4xl drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)] leading-relaxed">
+           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)]">Noah Batterson</h1>
+           <p className="text-base sm:text-lg md:text-2xl text-white mb-8 md:mb-12 max-w-4xl drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)] leading-relaxed">
              I am currently a Junior majoring in Computer Science at Virginia Tech.
              <br></br>
              I&apos;m passionate about all kinds of things computer science, thanks for visiting my website!
@@ -121,11 +121,11 @@ export default function Home() {
       </section>
 
       {/* About Section: brief introduction */}
-      <section id="about" className="h-screen flex items-center justify-center bg-gray-800">
+      <section id="about" className="min-h-screen flex items-center justify-center bg-gray-800 px-4 py-16 md:py-24">
         <div className="text-center">
-          <h2 className="text-6xl font-bold mb-8 text-white">About Me</h2>
-          <div className="bg-gray-700/50 backdrop-blur-sm rounded-2xl p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
-            <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 text-white">About Me</h2>
+          <div className="bg-gray-700/50 backdrop-blur-sm rounded-2xl p-6 md:p-10 lg:p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
+            <p className="text-base md:text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
               Hello, I&apos;m Noah Batterson! In high school I attended the Center for Information Technology (CIT) at Deep Run High School. This was my first introduction to computer science, and I&apos;ve been on the path every since.
               <br></br>
               <br></br>
@@ -138,13 +138,13 @@ export default function Home() {
       </section>
 
       {/* Projects Section: list of highlighted projects */}
-      <section id="projects" className="h-screen flex items-center justify-center bg-gray-900">
+      <section id="projects" className="min-h-screen flex items-center justify-center bg-gray-900 px-4 py-16 md:py-24">
         <div className="text-center">
-          <h2 className="text-6xl font-bold mb-8 text-white">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 text-white">Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto px-0 md:px-4">
             {/* Personal Website Project */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
-              <div className="h-48 bg-gray-700/30 flex items-center justify-center overflow-hidden">
+              <div className="h-40 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center overflow-hidden">
                 <Image 
                   src="/Personal Website Thumbnail.png" 
                   alt="Personal Website Thumbnail" 
@@ -153,8 +153,8 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-3">
+              <div className="p-5 md:p-6">
+                <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
                   <a href="https://noahbatterson.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200">
                     Personal Website (This one!)
                   </a>
@@ -165,11 +165,11 @@ export default function Home() {
 
             {/* Makemore AI Project */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
-              <div className="h-48 bg-gray-700/30 flex items-center justify-center">
+              <div className="h-40 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center">
                 <div className="text-gray-400 text-sm">{/*Project image should be here when completed*/}</div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-3">Makemore Artificial Intelligence Model</h3>
+              <div className="p-5 md:p-6">
+                <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Makemore Artificial Intelligence Model</h3>
                 <p className="text-gray-300 text-sm">Building an AI model inspired by Andrej Karpathy&apos;s Makemore series for character-level language modeling.</p>
                 <span className="inline-block mt-2 px-2 py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
               </div>
@@ -177,7 +177,7 @@ export default function Home() {
 
             {/* Spades+ Project */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
-              <div className="h-48 bg-gray-700/30 flex items-center justify-center overflow-hidden">
+              <div className="h-40 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center overflow-hidden">
                 <Image 
                   src="/Spades+ Thumbnail.jpg" 
                   alt="Spades+ Game Thumbnail" 
@@ -186,8 +186,8 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-3">Spades+</h3>
+              <div className="p-5 md:p-6">
+                <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Spades+</h3>
                 <p className="text-gray-300 text-sm">A twist on the classic Spades card game with enhanced features, additional gamemodes, and multiplayer support.</p>
                 <span className="inline-block mt-2 px-2 py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
               </div>
@@ -195,7 +195,7 @@ export default function Home() {
 
             {/* Codeswords+ Project */}
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
-              <div className="h-48 bg-gray-700/30 flex items-center justify-center overflow-hidden">
+              <div className="h-40 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center overflow-hidden">
                 <Image 
                   src="/Codewords+ Thumnail.png" 
                   alt="Codewords+ Game Thumbnail" 
@@ -204,8 +204,8 @@ export default function Home() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-3">Codeswords+</h3>
+              <div className="p-5 md:p-6">
+                <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Codeswords+</h3>
                 <p className="text-gray-300 text-sm">An online real-time multiplayer adaptation of the popular Codenames board game with numerous new features and gamemodes.</p>
                 <span className="inline-block mt-2 px-2 py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
               </div>
@@ -215,11 +215,11 @@ export default function Home() {
       </section>
 
       {/* Resume Section: download my latest resume */}
-      <section id="resume" className="h-screen flex items-center justify-center bg-gray-800">
+      <section id="resume" className="min-h-screen flex items-center justify-center bg-gray-800 px-4 py-16 md:py-24">
         <div className="text-center">
-          <h2 className="text-6xl font-bold mb-8 text-white">Resume</h2>
-          <div className="bg-gray-700/50 backdrop-blur-sm rounded-2xl p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
-            <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 text-white">Resume</h2>
+          <div className="bg-gray-700/50 backdrop-blur-sm rounded-2xl p-6 md:p-10 lg:p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
+            <p className="text-base md:text-xl text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
               Download my resume to learn more about my experience and skills.
             </p>
             <a
@@ -234,21 +234,21 @@ export default function Home() {
       </section>
 
       {/* Contact Section: contact methods and links */}
-      <section id="contact" className="h-screen flex items-center justify-center bg-gray-950">
+      <section id="contact" className="min-h-screen flex items-center justify-center bg-gray-950 px-4 py-16 md:py-24">
         <div className="text-center">
-          <h2 className="text-6xl font-bold mb-8 text-white">Contact</h2>
-          <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
-            <div className="space-y-6">
-              <p className="text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 text-white">Contact</h2>
+          <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 md:p-10 lg:p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
+            <div className="space-y-5 md:space-y-6">
+              <p className="text-base md:text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
                <strong>If you would like know more or get in touch with me, feel free to reach out!</strong>
               </p>
-              <p className="text-xl text-gray-300">
+              <p className="text-base md:text-xl text-gray-300">
                 Email: <a href="mailto:noah.batterson42@gmail.com" className="text-blue-400 hover:text-blue-300 underline">noah.batterson42@gmail.com</a>
               </p>
-              <p className="text-xl text-gray-300">
+              <p className="text-base md:text-xl text-gray-300">
                 Handshake: <a href="https://vt.joinhandshake.com/profiles/musdtp" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">vt.joinhandshake.com/profiles/musdtp</a>
               </p>
-              <p className="text-xl text-gray-300">
+              <p className="text-base md:text-xl text-gray-300">
                 LinkedIn: <a href="https://www.linkedin.com/in/noah-batterson" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">linkedin.com/in/noah-batterson</a>
               </p>
             </div>
@@ -269,10 +269,10 @@ export default function Home() {
             window.location.hash = sections[nextIndex];
           }
         }}
-        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center z-40"
+        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-10 h-10 md:w-12 md:h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center z-40"
         aria-label="Go to next section"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
         </svg>
       </button>
