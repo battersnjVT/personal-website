@@ -240,7 +240,7 @@ export default function Home() {
           <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 md:p-10 lg:p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
             <div className="space-y-5 md:space-y-6">
               <p className="text-base md:text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
-               <strong>If you would like know more or get in touch with me, feel free to reach out!</strong>
+               <strong>If you would like to know more or get in touch with me, feel free to reach out!</strong>
               </p>
               <p className="text-base md:text-xl text-gray-300">
                 Email: <a href="mailto:noah.batterson42@gmail.com" className="text-blue-400 hover:text-blue-300 underline">noah.batterson42@gmail.com</a>
