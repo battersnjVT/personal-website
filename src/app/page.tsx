@@ -3,6 +3,14 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
+const navigationLinks = [
+  { href: '#home', label: 'HOME' },
+  { href: '#about', label: 'ABOUT' },
+  { href: '#projects', label: 'PROJECTS' },
+  { href: '#resume', label: 'RESUME' },
+  { href: '#contact', label: 'CONTACT' },
+];
+
 export default function Home() {
   // Enable smooth scrolling for the entire page
   useEffect(() => {
@@ -11,6 +19,7 @@ export default function Home() {
 
   // State to track scroll position for navbar styling
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,40 +32,89 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const closeMenuOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+    const closeMenuOnDesktop = () => {
+      if (window.innerWidth >= 768) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', closeMenuOnEscape);
+    window.addEventListener('resize', closeMenuOnDesktop);
+    return () => {
+      window.removeEventListener('keydown', closeMenuOnEscape);
+      window.removeEventListener('resize', closeMenuOnDesktop);
+    };
+  }, []);
+
   return (
-    <main className="relative">
-             {/* Navbar */}
-               <nav className={`fixed top-0 left-0 w-full z-50 flex justify-center gap-3 md:gap-6 py-3 md:py-4 px-4 transition-all duration-300 border-b border-white ${
-          isScrolled 
-            ? 'bg-gray-900 shadow-lg' 
-            : 'bg-transparent'
-        }`}>
-         <a href="#home" className={`font-black tracking-wider transition-colors duration-200 text-sm md:text-base px-2 ${
-           isScrolled 
-             ? 'text-gray-300 hover:text-blue-400' 
-             : 'text-white hover:text-blue-300'
-         }`}>HOME</a>
-         <a href="#about" className={`font-black tracking-wider transition-colors duration-200 text-sm md:text-base px-2 ${
-           isScrolled 
-             ? 'text-gray-300 hover:text-blue-400' 
-             : 'text-white hover:text-blue-300'
-         }`}>ABOUT</a>
-         <a href="#projects" className={`font-black tracking-wider transition-colors duration-200 text-sm md:text-base px-2 ${
-           isScrolled 
-             ? 'text-gray-300 hover:text-blue-400' 
-             : 'text-white hover:text-blue-400'
-         }`}>PROJECTS</a>
-         <a href="#resume" className={`font-black tracking-wider transition-colors duration-200 text-sm md:text-base px-2 ${
-           isScrolled 
-             ? 'text-gray-300 hover:text-blue-400' 
-             : 'text-white hover:text-blue-300'
-         }`}>RESUME</a>
-         <a href="#contact" className={`font-black tracking-wider transition-colors duration-200 text-sm md:text-base px-2 ${
-           isScrolled 
-             ? 'text-gray-300 hover:text-blue-400' 
-             : 'text-white hover:text-blue-300'
-         }`}>CONTACT</a>
-       </nav>
+    <main className="relative overflow-x-hidden">
+      {/* Navbar */}
+      <nav className={`site-nav fixed top-0 left-0 w-full z-50 px-4 pb-2 md:py-4 transition-all duration-300 border-b border-white ${
+        isScrolled || isMenuOpen
+          ? 'bg-gray-900 shadow-lg'
+          : 'bg-transparent'
+      }`}>
+        <div className="mx-auto flex w-full max-w-6xl items-center justify-between md:justify-center">
+          <a
+            href="#home"
+            onClick={() => setIsMenuOpen(false)}
+            className="flex min-h-11 items-center font-black tracking-wider text-white transition-colors hover:text-blue-300 md:hidden"
+          >
+            NB
+          </a>
+
+          <div className="hidden items-center justify-center gap-6 md:flex">
+            {navigationLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`px-2 py-1 font-black tracking-wider transition-colors duration-200 ${
+                  isScrolled
+                    ? 'text-gray-300 hover:text-blue-400'
+                    : 'text-white hover:text-blue-300'
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+            className="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 rounded-md text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 md:hidden"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          >
+            <span className={`block h-0.5 w-6 bg-current transition-transform ${isMenuOpen ? 'translate-y-2 rotate-45' : ''}`} />
+            <span className={`block h-0.5 w-6 bg-current transition-opacity ${isMenuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block h-0.5 w-6 bg-current transition-transform ${isMenuOpen ? '-translate-y-2 -rotate-45' : ''}`} />
+          </button>
+        </div>
+
+        <div
+          id="mobile-navigation"
+          className={`${isMenuOpen ? 'flex' : 'hidden'} absolute left-0 right-0 top-full max-h-[calc(100dvh-4rem)] flex-col overflow-y-auto border-b border-white/30 bg-gray-900 px-4 py-2 shadow-xl md:hidden`}
+        >
+          {navigationLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="flex min-h-12 items-center justify-center border-b border-white/10 font-black tracking-wider text-gray-200 transition-colors last:border-0 hover:bg-white/10 hover:text-blue-400 focus-visible:outline-2 focus-visible:outline-blue-400"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </nav>
 
       {/* Sections */}
 
@@ -64,10 +122,10 @@ export default function Home() {
       <section id="home" className="min-h-screen flex items-center justify-center relative px-4 py-16 md:py-24">
         
         {/* Home Content */}
-                 <div className="text-center relative z-10">
+                 <div className="text-center relative z-10 max-w-5xl rounded-3xl border border-white/15 bg-gray-950/45 px-5 py-7 shadow-2xl backdrop-blur-[2px] sm:px-8 sm:py-9 md:px-12 md:py-10">
            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 md:mb-8 drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)]">Noah Batterson</h1>
            <p className="text-base sm:text-lg md:text-2xl text-white mb-8 md:mb-12 max-w-4xl drop-shadow-2xl filter drop-shadow-[0_25px_25px_rgba(0,0,0,1)] leading-relaxed">
-             I am currently a Junior majoring in Computer Science at Virginia Tech.
+             I am currently a Senior in the College of Engineering at Virginia Tech, majoring in Computer Science and set to graduate in December 2026. I am also planning on graduating in the Spring of 2027 with my Master of Engineering in Computer Science and Applications.
              <br></br>
              I&apos;m passionate about all kinds of things computer science, thanks for visiting my website!
            </p>
@@ -126,88 +184,104 @@ export default function Home() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 text-white">About Me</h2>
           <div className="bg-gray-700/50 backdrop-blur-sm rounded-2xl p-6 md:p-10 lg:p-12 max-w-4xl mx-auto border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out">
             <p className="text-base md:text-xl max-w-3xl mx-auto text-gray-300 leading-relaxed">
-              Hello, I&apos;m Noah Batterson! In high school I attended the Center for Information Technology (CIT) at Deep Run High School. This was my first introduction to computer science, and I&apos;ve been on the path every since.
+              Hello, I&apos;m Noah Batterson! In high school I attended the Center for Information Technology at Deep Run High School. This was my first introduction to computer science, and I&apos;ve been on the path ever since.
               <br></br>
               <br></br>
-              Currently I&apos;m a Computer Science student interested in all sorts of topics in computer science.
+              Currently, I&apos;m a Computer Science student interested in all sorts of topics in computer science.
               
-              I&apos;m mostly interested in higher level Data Structures and Algorithms, Artificial Intelligence, Machine Learning, and Cybersecurity.  
+              I&apos;m mostly interested in artificial intelligence, cybersecurity, software and web development, and more.
             </p>
           </div>
         </div>
       </section>
 
       {/* Projects Section: list of highlighted projects */}
-      <section id="projects" className="min-h-screen flex items-center justify-center bg-gray-900 px-4 py-16 md:py-24">
-        <div className="text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 text-white">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto px-0 md:px-4">
+      <section id="projects" className="min-h-screen flex items-center justify-center bg-gray-900 px-2 sm:px-4 py-16 md:py-24">
+        <div className="w-full text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 md:mb-8 text-white">Projects</h2>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-8 max-w-6xl mx-auto md:px-4">
             {/* Personal Website Project */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
-              <div className="h-40 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center overflow-hidden">
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl md:hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
+              <div className="h-24 sm:h-32 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center overflow-hidden">
                 <Image 
-                  src="/Personal Website Thumbnail.png" 
+                  src="/personal-website-thumbnail.webp"
                   alt="Personal Website Thumbnail" 
-                  width={400}
-                  height={192}
+                  width={1200}
+                  height={572}
+                  sizes="(max-width: 767px) 50vw, (max-width: 1279px) 45vw, 550px"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-5 md:p-6">
-                <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">
+              <div className="p-3 sm:p-4 md:p-6">
+                <h3 className="text-sm md:text-xl font-semibold text-white mb-1 sm:mb-2 md:mb-3 leading-tight">
                   <a href="https://noahbatterson.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200">
                     Personal Website (This one!)
                   </a>
                 </h3>
-                <p className="text-gray-300 text-sm">A modern and responsive personal portfolio website built with Next.js and Tailwind CSS, deployed with Vercel.</p>
+                <p className="line-clamp-4 text-xs leading-snug text-gray-300 sm:line-clamp-5 md:line-clamp-none md:text-sm md:leading-normal">A modern and responsive personal portfolio website built with Next.js and Tailwind CSS, deployed with Vercel.</p>
               </div>
             </div>
 
-            {/* Makemore AI Project */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
-              <div className="h-40 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center">
-                <div className="text-gray-400 text-sm">{/*Project image should be here when completed*/}</div>
-              </div>
-              <div className="p-5 md:p-6">
-                <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Makemore Artificial Intelligence Model</h3>
-                <p className="text-gray-300 text-sm">Building an AI model inspired by Andrej Karpathy&apos;s Makemore series for character-level language modeling.</p>
-                <span className="inline-block mt-2 px-2 py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
-              </div>
-            </div>
-
-            {/* Spades+ Project */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
-              <div className="h-40 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center overflow-hidden">
-                <Image 
-                  src="/Spades+ Thumbnail.jpg" 
-                  alt="Spades+ Game Thumbnail" 
-                  width={400}
-                  height={192}
+            {/* ReadingTheBible Project */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl md:hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
+              <div className="h-24 sm:h-32 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center overflow-hidden">
+                <Image
+                  src="/readingthebible-screenshot.webp"
+                  alt="ReadingTheBible website screenshot"
+                  width={1200}
+                  height={518}
+                  sizes="(max-width: 767px) 50vw, (max-width: 1279px) 45vw, 550px"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-5 md:p-6">
-                <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Spades+</h3>
-                <p className="text-gray-300 text-sm">A twist on the classic Spades card game with enhanced features, additional gamemodes, and multiplayer support.</p>
-                <span className="inline-block mt-2 px-2 py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
+              <div className="p-3 sm:p-4 md:p-6">
+                <h3 className="text-sm md:text-xl font-semibold text-white mb-1 sm:mb-2 md:mb-3 leading-tight">
+                  <a href="https://readingthebible.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200">
+                    ReadingTheBible
+                  </a>
+                </h3>
+                <p className="line-clamp-4 text-xs leading-snug text-gray-300 sm:line-clamp-5 md:line-clamp-none md:text-sm md:leading-normal">A Bible reading app designed to offer highly customizable daily reading plans. This site offers the ability to create and organize your reading plan, track your progress, and keep your assigned chapters easy to keep up with and read.</p>
               </div>
             </div>
 
-            {/* Codeswords+ Project */}
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
-              <div className="h-40 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center overflow-hidden">
+            {/* CodewordsPlus Project */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl md:hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
+              <div className="h-24 sm:h-32 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center overflow-hidden">
                 <Image 
-                  src="/Codewords+ Thumnail.png" 
-                  alt="Codewords+ Game Thumbnail" 
-                  width={400}
-                  height={192}
+                  src="/codewordsplus-screenshot.webp"
+                  alt="CodewordsPlus Game Thumbnail"
+                  width={1200}
+                  height={505}
+                  sizes="(max-width: 767px) 50vw, (max-width: 1279px) 45vw, 550px"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-5 md:p-6">
-                <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">Codeswords+</h3>
-                <p className="text-gray-300 text-sm">An online real-time multiplayer adaptation of the popular Codenames board game with numerous new features and gamemodes.</p>
-                <span className="inline-block mt-2 px-2 py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
+              <div className="p-3 sm:p-4 md:p-6">
+                <h3 className="text-sm md:text-xl font-semibold text-white mb-1 sm:mb-2 md:mb-3 leading-tight">
+                  <a href="https://codewordsplus.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200">
+                    CodewordsPlus
+                  </a>
+                </h3>
+                <p className="line-clamp-4 text-xs leading-snug text-gray-300 sm:line-clamp-5 md:line-clamp-none md:text-sm md:leading-normal">An online multiplayer adaptation of the popular Codenames board game with numerous new features and gamemodes.</p>
+              </div>
+            </div>
+
+            {/* SpadesPlus Project */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl md:rounded-2xl border border-gray-600/30 shadow-2xl hover:shadow-3xl md:hover:-translate-y-2 transition-all duration-300 ease-out overflow-hidden">
+              <div className="h-24 sm:h-32 md:h-48 lg:h-56 bg-gray-700/30 flex items-center justify-center overflow-hidden">
+                <Image 
+                  src="/spadesplus-thumbnail.webp"
+                  alt="SpadesPlus Game Thumbnail"
+                  width={1024}
+                  height={682}
+                  sizes="(max-width: 767px) 50vw, (max-width: 1279px) 45vw, 550px"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-3 sm:p-4 md:p-6">
+                <h3 className="text-sm md:text-xl font-semibold text-white mb-1 sm:mb-2 md:mb-3 leading-tight">SpadesPlus</h3>
+                <p className="line-clamp-4 text-xs leading-snug text-gray-300 sm:line-clamp-5 md:line-clamp-none md:text-sm md:leading-normal">A twist on the classic Spades card game with enhanced features, additional gamemodes, and multiplayer functionality.</p>
+                <span className="inline-block mt-1 sm:mt-2 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-yellow-600/20 text-yellow-300 text-xs rounded-full">In Progress</span>
               </div>
             </div>
           </div>
@@ -246,10 +320,10 @@ export default function Home() {
                 Email: <a href="mailto:noah.batterson42@gmail.com" className="text-blue-400 hover:text-blue-300 underline">noah.batterson42@gmail.com</a>
               </p>
               <p className="text-base md:text-xl text-gray-300">
-                Handshake: <a href="https://vt.joinhandshake.com/profiles/musdtp" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">vt.joinhandshake.com/profiles/musdtp</a>
+                LinkedIn: <a href="https://www.linkedin.com/in/noah-batterson" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">linkedin.com/in/noah-batterson</a>
               </p>
               <p className="text-base md:text-xl text-gray-300">
-                LinkedIn: <a href="https://www.linkedin.com/in/noah-batterson" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">linkedin.com/in/noah-batterson</a>
+                Handshake: <a href="https://vt.joinhandshake.com/profiles/musdtp" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 underline">vt.joinhandshake.com/profiles/musdtp</a>
               </p>
             </div>
           </div>
@@ -259,17 +333,19 @@ export default function Home() {
       {/* Floating Navigation Button: skips to the next section */}
       <button 
         onClick={() => {
-          const currentSection = window.location.hash || '#home';
-          const sections = ['#home', '#about', '#projects', '#resume', '#contact'];
-          const currentIndex = sections.indexOf(currentSection);
-          const nextIndex = (currentIndex + 1) % sections.length;
-          const nextSection = document.querySelector(sections[nextIndex]);
+          const sections = Array.from(
+            document.querySelectorAll<HTMLElement>('main > section[id]')
+          );
+          const nextSection =
+            sections.find((section) => section.getBoundingClientRect().top > 1) ??
+            sections[0];
+
           if (nextSection) {
             nextSection.scrollIntoView({ behavior: 'smooth' });
-            window.location.hash = sections[nextIndex];
+            window.history.replaceState(null, '', `#${nextSection.id}`);
           }
         }}
-        className="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-10 h-10 md:w-12 md:h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center z-40"
+        className="next-section-button fixed left-1/2 transform -translate-x-1/2 w-11 h-11 md:w-12 md:h-12 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center z-40"
         aria-label="Go to next section"
       >
         <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

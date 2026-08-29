@@ -23,11 +23,21 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-wrap: anywhere;
+}
+
+/* Keep fixed controls clear of phone and tablet display cutouts. */
+.site-nav {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
+
+.next-section-button {
+  bottom: max(1.5rem, env(safe-area-inset-bottom));
 }
 
 /* Mountain background for home section */
 #home {
-  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+  background-image: url('/mountain-background.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
